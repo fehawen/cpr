@@ -21,23 +21,25 @@ random_palette() {
     palette=${1##*/}
 }
 
+add_sequence() {
+    seqs="$seqs]$1;$2\\";
+}
+
 make_sequences() {
     [ -f "$1/$palette" ] || die "Palette '$palette' not found"
-
-    add_seq() { seqs="$seqs]$1;$2\\"; }
 
     i=0
     while read -r line; do
         color="${line:=#000000}"
 
-        add_seq "4;$i" "$color"
+        add_sequence "4;$i" "$color"
 
         [ "$i" = 0 ] && {
-            add_seq "11" "$color"
-            add_seq "19" "$color"
-            add_seq "4;232" "$color"
+            add_sequence "11" "$color"
+            add_sequence "19" "$color"
+            add_sequence "4;232" "$color"
 
-            [ "$VTE_VERSION" ] || add_seq "708" "$color"
+            [ "$VTE_VERSION" ] || add_sequence "708" "$color"
         }
 
         [ "$i" = 8 ] && command -v xsetroot >/dev/null && {
@@ -45,10 +47,10 @@ make_sequences() {
         }
 
         [ "$i" = 15 ] && {
-            add_seq "10" "$color"
-            add_seq "12" "$color"
-            add_seq "13" "$color"
-            add_seq "4;256" "$color"
+            add_sequence "10" "$color"
+            add_sequence "12" "$color"
+            add_sequence "13" "$color"
+            add_sequence "4;256" "$color"
         }
 
         i=$((i+1))
