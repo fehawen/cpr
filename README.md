@@ -16,7 +16,7 @@ Clone the repo.
 https://github.com/fehawen/pal.git
 ```
 
-Install by running `make install`. This will install `pal` to `~/bin` and `palettes` to `~/.palettes` by default, simply because that's the way I like it.
+Install by running `make install`. This will install `pal` to `~/bin` by default, simply because that's the way I like it.
 
 Add `~/.bin` to your `PATH` if not already present.
 
