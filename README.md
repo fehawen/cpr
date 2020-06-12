@@ -1,10 +1,14 @@
-## Palettes
+## palettes
 
-### About
+### about
 
-16-color palettes to be used with this dumb little `pal` script to give our terminals freshly new colors.
+16-color palettes to be used with this simple little `pal` script to give our terminals freshly new colors whenever we feel like it.
 
-### Usage
+Some of the palettes have been generated using the fantastic [pywal](https://github.com/dylanaraps/pywal). Some of the palettes have not.
+
+It should be mentioned that `pal` is heavily inspired by [paleta](https://github.com/dylanaraps/paleta/blob/master/paleta) and [okpal](https://github.com/dylanaraps/okpal/blob/master/okpal). Hopefully the author does not mind, or otherwise have me know so.
+
+### install
 
 Clone the repo.
 
@@ -12,15 +16,11 @@ Clone the repo.
 https://github.com/fehawen/pal.git
 ```
 
-Set the environment varialbe `PAL_PATH` to point to this directory.
+Install by running `make install`. This will install `pal` to `~/bin` and `palettes` to `~/.palettes` by default, simply because that's the way I like it.
 
-```sh
-export PAL_PATH=/path/to/repo
-```
+Add `~/.bin` to your `PATH` if not already present.
 
-Install `pal` to your preferred `*/bin/` manually, or by running `make install` (installs to ~/bin by default).
-
-Persist colors by adding the following to whichever shell flavour `.rc` or `.profile` you're using.
+Persist colors by adding the following to whichever shell flavour `.*rc` or `.*profile` you're using.
 
 ```sh
 [ -f ~/.cache/pal/palette ] && (
@@ -29,7 +29,3 @@ Persist colors by adding the following to whichever shell flavour `.rc` or `.pro
 ```
 
 Whoop.
-
-### Notes
-
-This script has borrowed its code intensely from [paleta](https://github.com/dylanaraps/paleta/blob/master/paleta) and [okpal](https://github.com/dylanaraps/okpal/blob/master/okpal). In other words: *Thanks Dylan, hope you don't mind.*
