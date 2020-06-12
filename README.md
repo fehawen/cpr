@@ -20,6 +20,12 @@ Install by running `make install`. This will install `pal` to `~/bin` by default
 
 Add `~/.bin` to your `PATH` if not already present.
 
+Set the environment varialbe `PAL_PATH` to point to this directory.
+
+```sh
+export PAL_PATH=/path/to/repo
+```
+
 Persist colors by adding the following to whichever shell flavour `.*rc` or `.*profile` you're using.
 
 ```sh
@@ -27,5 +33,3 @@ Persist colors by adding the following to whichever shell flavour `.*rc` or `.*p
     cat ~/.cache/pal/palette 2>/dev/null &
 )
 ```
-
-Whoop.
