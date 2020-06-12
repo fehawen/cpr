@@ -10,19 +10,19 @@ die() {
 }
 
 random_palette() {
-    set -f -- "$lib/"*
+    set -f -- "$1/"*
     shift "$(shuf -i "1-$#" -n 1)"
     set +f
 
     while [ ! -f "$1" ] && [ "$2" ]; do shift; done
 
-    [ -f "$1" ] || random_palette
+    [ -f "$1" ] || args
 
-    palette="${1##*/}"
+    palette=${1##*/}
 }
 
 make_sequences() {
-    [ -f "$1" ] || die "Palette '$1' not found"
+    [ -f "$1/$palette" ] || die "Palette '$palette' not found"
 
     add_seq() { seqs="$seqs]$1;$2\\"; }
 
@@ -52,7 +52,7 @@ make_sequences() {
         }
 
         i=$((i+1))
-    done < "$1"
+    done < "$1/$palette"
 
     for tty in /dev/fd/0 /dev/pts/[0-9]*; do
         [ -w "$tty" ] && printf %b "$seqs" > "$tty" &
@@ -62,7 +62,7 @@ make_sequences() {
 }
 
 print_palette() {
-    printf 'Using palette: \033[1m%s\033[m\n\n' "${1##*/}"
+    printf 'Using palette: \033[1m%s\033[m\n\n' "$palette"
 
     for i in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
         printf '\033[48;5;%sm    \033[m' "$i"
@@ -71,10 +71,12 @@ print_palette() {
     done
 
     printf '\n\n'
+
+    exit 0
 }
 
 list_palettes() {
-    for p in "$lib/"*; do
+    for p in "$1/"*; do
         [ -f "$p" ] && {
             printf '\e[1;3'$(((${#p} % 6) + 1))m%s'\e[m\n' "${p##*/}"
         }
@@ -86,32 +88,30 @@ list_palettes() {
 args() {
     mode=light
 
-    while getopts :s:ld opt; do case $opt in
-        s)
-            palette="$OPTARG"
-        ;;
-        l)
-            list=1
-        ;;
-        d)
-            mode=dark
-        ;;
-        ?)
+    while getopts ls:dvh opt; do case $opt in
+        l) list=1 ;;
+        s) palette=$OPTARG ;;
+        d) mode=dark ;;
+        v) die "0.0.1" ;;
+        *)
             die "Usage: ${0##*/}, ${0##*/} <args>" \
+                "             Use a random palette (no args, or with '-d')" \
                 "-s palette   Select palette" \
                 "-l           List palettes" \
-                "-d           Set dark theme" \
+                "-d           Set dark theme (random or by selecting palette)" \
                 "-h           Show this information"
         ;;
     esac; done
 
-    lib="${PAL_PATH%%/}/palettes/$mode"
+    set -- "${PAL_PATH%%/}/palettes/$mode"
 
-    [ "$list" ] && list_palettes
-    [ -z "$palette" ] && random_palette
+    [ "$list" ] && list_palettes "$@"
+    [ "$palette" ] || random_palette "$@"
 
-    make_sequences "$lib/$palette"
-    print_palette "$lib/$palette"
+    [ "$palette" ] && {
+        make_sequences "$@"
+        print_palette
+    }
 }
 
 main() {
