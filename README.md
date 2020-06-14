@@ -2,11 +2,11 @@
 
 ### about
 
-16-color palettes to be used with this simple little `pal` script to give our terminals freshly new colors whenever we feel like it.
+16-color palettes and their friend `pal` to give us fresh new terminal colors on demand.
 
-Some of the palettes have been generated using the fantastic [pywal](https://github.com/dylanaraps/pywal). Some of the palettes have not.
+Some of the palettes were made with [pywal](https://github.com/dylanaraps/pywal). Some of the palettes were not.
 
-It should be mentioned that `pal` is heavily inspired by [paleta](https://github.com/dylanaraps/paleta/blob/master/paleta) and [okpal](https://github.com/dylanaraps/okpal/blob/master/okpal). Hopefully the author does not mind, or otherwise have me know so.
+`pal` is very much inspired by [paleta](https://github.com/dylanaraps/paleta/blob/master/paleta) and [okpal](https://github.com/dylanaraps/okpal/blob/master/okpal).
 
 ### install
 
@@ -16,7 +16,7 @@ Clone the repo.
 https://github.com/fehawen/pal.git
 ```
 
-Install by running `make install`. This will install `pal` to `~/bin` by default, simply because that's the way I like it.
+Run `make install`. This will install `pal` to `~/bin` by default, because that's the way I like it.
 
 Add `~/.bin` to your `PATH` if not already present.
 
