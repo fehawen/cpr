@@ -99,25 +99,23 @@ list_palettes() {
 }
 
 args() {
-    while getopts lds:cah opt; do case $opt in
-        l) mode=light ;;
+    mode=light
+
+    while getopts ds:clh opt; do case $opt in
         d) mode=dark ;;
         s) palette=$OPTARG ;;
         c) curr=1 ;;
-        a) list=1 ;;
+        l) list=1 ;;
         *)
             die "${0##*/}: Swap between palettes in a jiffy" \
                 "Usage: ${0##*/} [-ldach] [-s palette]" \
-                "    -l use light theme" \
                 "    -d use dark theme" \
-                "    -a list palettes" \
-                "    -c current palette name" \
                 "    -s use specific palette" \
+                "    -c current palette name" \
+                "    -l list palettes" \
                 "    -h show this information"
         ;;
     esac; done
-
-    [ ! "$mode" ] && [ ! "$list" ] && [ ! "$curr" ] && main -h
 
     set -- "${PAL_PATH%%/}/palettes/${mode:=light}"
 
