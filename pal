@@ -61,6 +61,7 @@ make_sequences() {
     done
 
     printf %b "$seqs" > "$CACHE_DIR/palette"
+    printf %s "$palette" > "$CACHE_DIR/current"
 }
 
 print_palette() {
@@ -77,6 +78,16 @@ print_palette() {
     exit 0
 }
 
+current_palette() {
+    [ -f "$CACHE_DIR/current" ] && {
+        while IFS= read -r line || [ -n "$line" ]; do
+            printf 'Current palette: \033[1m%s\033[m\n' "$line"
+        done < "$CACHE_DIR/current"
+    }
+
+    exit 0
+}
+
 list_palettes() {
     for p in "$1/"*; do
         [ -f "$p" ] && {
@@ -88,25 +99,29 @@ list_palettes() {
 }
 
 args() {
-    mode=light
-
-    while getopts ls:dvh opt; do case $opt in
-        l) list=1 ;;
-        s) palette=$OPTARG ;;
+    while getopts lds:cah opt; do case $opt in
+        l) mode=light ;;
         d) mode=dark ;;
-        v) die "0.0.1" ;;
+        s) palette=$OPTARG ;;
+        c) curr=1 ;;
+        a) list=1 ;;
         *)
-            die "Usage: ${0##*/}, ${0##*/} <args>" \
-                "             Use a random palette (no args, or with '-d')" \
-                "-s palette   Select palette" \
-                "-l           List palettes" \
-                "-d           Set dark theme (random or by selecting palette)" \
-                "-h           Show this information"
+            die "${0##*/}: Swap between palettes in a jiffy" \
+                "Usage: ${0##*/} [-ldach] [-s palette]" \
+                "    -l use light theme" \
+                "    -d use dark theme" \
+                "    -a list palettes" \
+                "    -c current palette name" \
+                "    -s use specific palette" \
+                "    -h show this information"
         ;;
     esac; done
 
-    set -- "${PAL_PATH%%/}/palettes/$mode"
+    [ ! "$mode" ] && [ ! "$list" ] && [ ! "$curr" ] && main -h
 
+    set -- "${PAL_PATH%%/}/palettes/${mode:=light}"
+
+    [ "$curr" ] && current_palette
     [ "$list" ] && list_palettes "$@"
     [ "$palette" ] || random_palette "$@"
 
