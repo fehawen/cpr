@@ -28,9 +28,13 @@ add_sequence() {
 make_sequences() {
     [ -f "$1/$palette" ] || die "Palette '$palette' not found"
 
+    :> "$CACHE_DIR/colors"
+
     i=0
     while read -r line; do
         color="${line:=#000000}"
+
+        printf '%s\n' "color$i=\"$line\"" >> "$CACHE_DIR/colors"
 
         add_sequence "4;$i" "$color"
 
