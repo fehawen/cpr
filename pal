@@ -112,11 +112,11 @@ args() {
         l) list=1 ;;
         *)
             die "${0##*/}: Swap between palettes in a jiffy" \
-                "Usage: ${0##*/} [-ldch] [-s palette]" \
+                "Usage: ${0##*/} [-lcdh] [-s palette]" \
+                "    -l list palettes" \
+                "    -c current palette name" \
                 "    -d use dark theme" \
                 "    -s use specific palette" \
-                "    -c current palette name" \
-                "    -l list palettes" \
                 "    -h show this information"
         ;;
     esac; done
