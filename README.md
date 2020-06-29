@@ -1,6 +1,6 @@
 ## pal
 
-### about
+### About
 
 16-color palettes and their friend `pal` to give us fresh new terminal colors on demand.
 
@@ -8,7 +8,7 @@ Some of the palettes were made with [pywal](https://github.com/dylanaraps/pywal)
 
 `pal` is very much inspired by [paleta](https://github.com/dylanaraps/paleta/blob/master/paleta) and [okpal](https://github.com/dylanaraps/okpal/blob/master/okpal).
 
-### install
+### Install
 
 Clone the repo.
 
