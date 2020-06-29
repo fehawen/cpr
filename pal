@@ -1,12 +1,20 @@
 #!/bin/sh
 
 log() {
-    printf '\e[1;3'$(((${#1} % 6) + 1))m%s'\e[m\n' "$1"
+    printf '\033[1m%s\033[m\n' "$@"
 }
 
 die() {
-    printf '\033[1m%s\033[m\n' "$@"
+    log "$@"
     exit 1
+}
+
+has_xsr() {
+    command -v xsetroot >/dev/null
+}
+
+set_xsr() {
+    [ -z "$nobg" ] && has_xsr && xsetroot -solid "$1"
 }
 
 random_palette() {
@@ -44,10 +52,14 @@ make_sequences() {
             add_sequence "4;232" "$color"
 
             [ "$VTE_VERSION" ] || add_sequence "708" "$color"
+
+            [ "$flat" ] && {
+                set_xsr "$color"
+            }
         }
 
-        [ "$i" = 8 ] && command -v xsetroot >/dev/null && {
-            xsetroot -solid "$color"
+        [ "$i" = 8 ] && [ ! "$flat" ] && {
+            set_xsr "$color"
         }
 
         [ "$i" = 15 ] && {
@@ -105,17 +117,21 @@ list_palettes() {
 args() {
     mode=light
 
-    while getopts ds:clh opt; do case $opt in
+    while getopts dmns:clh opt; do case $opt in
         d) mode=dark ;;
+        m) flat=1 ;;
+        n) nobg=1 ;;
         s) palette=$OPTARG ;;
         c) curr=1 ;;
         l) list=1 ;;
         *)
             die "${0##*/}: Swap between palettes in a jiffy" \
-                "Usage: ${0##*/} [-lcdh] [-s palette]" \
+                "Usage: ${0##*/} [-lcdhn] [-s palette]" \
                 "    -l list palettes" \
                 "    -c current palette name" \
                 "    -d use dark theme" \
+                "    -m match bg color with window color" \
+                "    -n skip setting bg color" \
                 "    -s use specific palette" \
                 "    -h show this information"
         ;;
@@ -137,6 +153,8 @@ main() {
     [ -z "$PAL_PATH" ] && {
         die "PAL_PATH is not set."
     }
+
+    has_xsr || log "Install xsetroot in order for pal to set bg color"
 
     mkdir -p "${CACHE_DIR:=${HOME}/.cache/pal}"
 
