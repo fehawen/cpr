@@ -1,13 +1,13 @@
 PREFIX ?= $(HOME)
 
 all:
-	@echo Run \'make install\' to install pal.
+	@echo Run \'make install\' to install cpr.
 
 install:
 	@mkdir -pv $(DESTDIR)$(PREFIX)/bin
-	@cp -pv pal $(DESTDIR)$(PREFIX)/bin/pal
+	@cp -pv cpr $(DESTDIR)$(PREFIX)/bin/cpr
 	@echo Add \'~/bin\' to PATH.
-	@echo Set PAL_PATH to \'$(PWD)\'
+	@echo Set CPR_LIB to \'$(PWD)\'
 
 uninstall:
-	@rm -fv $(DESTDIR)$(PREFIX)/bin/pal
+	@rm -fv $(DESTDIR)$(PREFIX)/bin/cpr

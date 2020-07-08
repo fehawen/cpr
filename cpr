@@ -1,0 +1,72 @@
+#!/bin/sh
+
+mkdir -p "${cache_dir:=$HOME/.cache/cpr}"
+
+case $1 in
+    l|light) mode=light ;;
+    d|dark) mode=dark ;;
+    r|revive) cat "$cache_dir/palette" 2>/dev/null; exit ;;
+    *) printf '%s\n' "Usage: cpr d|dark|l|light|r|revive"; exit ;;
+esac
+
+[ -z "$CPR_LIB" ] && {
+    printf '%s\n' "CPR_LIB is not set."
+    exit 1
+}
+
+set -f -- "$CPR_LIB/palettes/$mode/"*
+shift "$(shuf -i "1-$#" -n 1)"
+set +f
+
+while [ ! -f "$1" ] && [ "$2" ]; do shift; done
+
+[ -f "$1" ] || cpr "$mode"
+
+palette=$1
+
+add_sequence() {
+    seqs="$seqs]$1;$2\\";
+}
+
+while read -r line; do
+    color="${line:=#000000}"
+
+    add_sequence "4;$i" "$color"
+
+    [ "$i" = 0 ] && {
+        add_sequence "11" "$color"
+        add_sequence "19" "$color"
+        add_sequence "4;232" "$color"
+
+        [ "$VTE_VERSION" ] || add_sequence "708" "$color"
+    }
+
+    [ "$i" = 8 ] && {
+        command -v xsetroot >/dev/null && xsetroot -solid "$color"
+    }
+
+    [ "$i" = 15 ] && {
+        add_sequence "10" "$color"
+        add_sequence "12" "$color"
+        add_sequence "13" "$color"
+        add_sequence "4;256" "$color"
+    }
+
+    : "$((i+=1))"
+done < "$palette"
+
+for tty in /dev/pts/[0-9]*; do
+    [ -w "$tty" ] && printf %b "$seqs" > "$tty" &
+done
+
+printf %b "$seqs" > "$cache_dir/palette"
+
+printf 'Using palette: \033[1m%s\033[m\n\n' "${palette##*/}"
+
+for i in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
+    printf '\033[48;5;%sm    \033[m' "$i"
+
+    [ "$i" = 7 ] && printf '\n'
+done
+
+printf '\n\n'
