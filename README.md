@@ -18,7 +18,7 @@ Run `make install`. This will install `cpr` to `~/bin` by default, because that'
 
 Add `~/.bin` to your `PATH` if not already present.
 
-Set the environment varialbe `CPR_LIB` to point to this directory, and persist colors, by adding the following to whichever shell flavour `rc` or `profile` you're using.
+Set the environment variable `CPR_LIB` to point to this directory, and persist colors, by adding the following to whichever shell flavour `rc` or `profile` you're using.
 
 ```sh
 export CPR_LIB=~/cpr # or wherever you cloned it to
