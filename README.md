@@ -25,3 +25,7 @@ export CPR_LIB=~/cpr # or wherever you cloned it to
 
 cpr revive # or: cpr r
 ```
+
+### Palettes
+
+Looking for more alternatives? There's a collection of [Katsushika Hokusai](https://github.com/fehawen/hokusai) palettes you can use instead.
