@@ -14,7 +14,7 @@ esac
     exit 1
 }
 
-set -f -- "$CPR_LIB/palettes/$mode/"*
+set -f -- "${CPR_LIB%%/}/palettes/$mode/"*
 shift "$(shuf -i "1-$#" -n 1)"
 set +f
 
