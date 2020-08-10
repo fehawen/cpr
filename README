@@ -1,0 +1,41 @@
+cpr - change palette randomly
+-----------------------------
+
+About
+-----
+
+16-color palettes and some cpr will give your terminal new colors whenever you want.
+
+cpr is very much inspired by:
+
+paleta
+https://github.com/dylanaraps/paleta/blob/master/paleta
+
+okpal
+https://github.com/dylanaraps/okpal/blob/master/okpal
+
+
+Install
+-------
+
+Clone the repo.
+
+    $ cd && git clone https://github.com/fehawen/cpr.git
+
+Run make install. This will install cpr to ~/bin by default, because that's the
+way I like it.
+
+Add ~/.bin to your PATH if not already present.
+
+Set the environment variable CPR_LIB to point to this directory, and persist
+colors, by adding the following to whichever shellrc you're using.
+
+    export CPR_LIB=~/cpr
+    cpr revive
+
+
+Palettes
+--------
+
+Looking for more alternatives? There's a collection of Katsushika Hokusai
+palettes you can use instead: https://github.com/fehawen/hokusai
