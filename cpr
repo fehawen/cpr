@@ -6,16 +6,17 @@ die() {
 }
 
 random_palette() {
-    set +f
     set -f -- "$1/"*
+
     shift "$(shuf -i "1-$#" -n 1)"
-    set +f
 
     while [ ! -f "$1" ] && [ "$2" ]; do shift; done
 
     [ -f "$1" ] || die "Failed to select a random palette."
 
     palette=${1##*/}
+
+    set +f
 }
 
 add_sequence() {
@@ -61,6 +62,7 @@ make_sequences() {
     done
 
     printf %b "$seqs" > "$cache_dir/palette"
+
     printf %s "$palette" > "$cache_dir/current"
 }
 
@@ -90,7 +92,9 @@ args() {
     set -- "${CPR_LIB%%/}/palettes/$mode"
 
     random_palette "$@"
+
     make_sequences "$@"
+
     print_palette
 }
 
