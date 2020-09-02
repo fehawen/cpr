@@ -4,18 +4,6 @@ cpr - change palette randomly
 Change your terminal colors randomly and on the fly with a selection of matching dark and light palettes.
 
 
-Credit
-------
-
-cpr is very much inspired by:
-
-paleta
-https://github.com/dylanaraps/paleta
-
-okpal
-https://github.com/dylanaraps/okpal
-
-
 Install
 -------
 
@@ -23,8 +11,10 @@ Clone the repo.
 
     $ cd && git clone https://github.com/fehawen/cpr.git
 
-Run make install. This will install cpr to ~/bin by default, because that's the
+Run make to install. This will install cpr to ~/bin by default, because that's the
 way I like it.
+
+    $ make install
 
 Add ~/.bin to your PATH if not already present.
 
@@ -40,3 +30,15 @@ Palettes
 
 Looking for more alternatives? There's a collection of Katsushika Hokusai
 palettes you can use as well: https://github.com/fehawen/hokusai
+
+
+Credits
+-------
+
+cpr is very much inspired by:
+
+paleta
+https://github.com/dylanaraps/paleta
+
+okpal
+https://github.com/dylanaraps/okpal
