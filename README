@@ -13,7 +13,7 @@ Clone the repo.
     $ cd && git clone https://github.com/fehawen/cpr.git
 
 Run make to install. This will install cpr to ~/bin by default, because that's
-the way I like it.
+the way I like it. Do not run the command as root.
 
     $ make install
 
