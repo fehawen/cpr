@@ -36,10 +36,17 @@ make_sequences() {
         add_sequence "4;$i" "$color"
 
         [ "$i" = 0 ] && {
+            # 11:  Background color
+            # 17:  Highlight background Color
+            # 257: Reversed cursor color
+            # 258: Background color
             add_sequence "11" "$color"
-            add_sequence "19" "$color"
-            add_sequence "4;232" "$color"
+            add_sequence "17" "$color"
+            add_sequence "4;257" "$color"
+            add_sequence "4;258" "$color"
 
+            # Unless VTE
+            # 708: Border color
             [ "$VTE_VERSION" ] || add_sequence "708" "$color"
         }
 
@@ -48,10 +55,19 @@ make_sequences() {
         }
 
         [ "$i" = 15 ] && {
+            # 10:  Foreground color
+            # 12:  Cursor foreground color
+            # 13:  Mouse foreground color
+            # 19:  Highlight foreground Color
+            # 256: Cursor color
+            # 259: Foreground color
+
             add_sequence "10" "$color"
             add_sequence "12" "$color"
             add_sequence "13" "$color"
+            add_sequence "19" "$color"
             add_sequence "4;256" "$color"
+            add_sequence "4;259" "$color"
         }
 
         : $((i+=1))
