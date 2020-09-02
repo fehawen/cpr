@@ -4,7 +4,11 @@ cpr - change palette randomly
 About
 -----
 
-Swap instantly between existing palettes, changing your terminal colors from a matching selection of dark and light themes.
+Change your terminal colors on the fly with a selection of matching dark and light palettes.
+
+
+Credit
+------
 
 cpr is very much inspired by:
 
