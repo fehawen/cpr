@@ -4,15 +4,15 @@ cpr - change palette randomly
 About
 -----
 
-16-color palettes and some cpr will give your terminal new colors whenever you want.
+Swap instantly between existing palettes, changing your terminal colors from a matching selection of dark and light themes.
 
 cpr is very much inspired by:
 
 paleta
-https://github.com/dylanaraps/paleta/blob/master/paleta
+https://github.com/dylanaraps/paleta
 
 okpal
-https://github.com/dylanaraps/okpal/blob/master/okpal
+https://github.com/dylanaraps/okpal
 
 
 Install
@@ -38,4 +38,4 @@ Palettes
 --------
 
 Looking for more alternatives? There's a collection of Katsushika Hokusai
-palettes you can use instead: https://github.com/fehawen/hokusai
+palettes you can use as well: https://github.com/fehawen/hokusai
