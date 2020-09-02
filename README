@@ -1,7 +1,8 @@
 cpr - change palette randomly
 -----------------------------
 
-Change your terminal colors randomly and on the fly with a selection of matching dark and light palettes.
+Change your terminal colors randomly and on the fly with a selection of matching
+dark and light palettes.
 
 
 Install
@@ -11,8 +12,8 @@ Clone the repo.
 
     $ cd && git clone https://github.com/fehawen/cpr.git
 
-Run make to install. This will install cpr to ~/bin by default, because that's the
-way I like it.
+Run make to install. This will install cpr to ~/bin by default, because that's
+the way I like it.
 
     $ make install
 
