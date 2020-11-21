@@ -131,7 +131,7 @@ main() {
         die "No palettes found in \"$CPR_LIB/palettes/$mode\"."
     }
 
-    mkdir -p "${cache_dir:=${HOME}/.cache/pal}"
+    mkdir -p "${cache_dir:=${HOME}/.cache/cpr}"
 
     args "$@"
 }
