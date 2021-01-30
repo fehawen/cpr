@@ -99,7 +99,7 @@ args() {
     case $1 in
         l|light) mode=light ;;
         d|dark) mode=dark ;;
-        r|revive) cat "$cache_dir/sequences" 2>/dev/null; exit ;;
+        r|revive) (cat "$cache_dir/sequences" 2>/dev/null &); exit ;;
         *) printf '%s\n' \
             "Usage: cpr [OPTION]" \
             "  d, dark       Load a random dark palette" \
