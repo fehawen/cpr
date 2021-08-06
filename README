@@ -17,10 +17,6 @@ the way I like it. Do not run the command as root.
 
     $ make install
 
-Add ~/.bin to your PATH if not already present.
-
-    export PATH=~/bin:$PATH
-
 Set the environment variable CPR_LIB to point to this directory, and persist
 colors, by adding the following to whichever shellrc you're using.
 
