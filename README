@@ -1,12 +1,12 @@
 cpr - change palette randomly
---------------------------------------------------------------------------------
+=============================
 
 Change your terminal colors randomly and on the fly with a selection of matching
 dark and light palettes.
 
 
-install
---------------------------------------------------------------------------------
+Installation
+------------
 
 Clone the repo.
 
@@ -24,15 +24,15 @@ colors, by adding the following to whichever shellrc you're using.
     cpr revive
 
 
-palettes
---------------------------------------------------------------------------------
+Palettes
+--------
 
 Looking for more alternatives? There's a collection of Katsushika Hokusai
 palettes you can use as well: https://github.com/fehawen/hokusai
 
 
-credits
---------------------------------------------------------------------------------
+Credits
+-------
 
 cpr is very much inspired by:
 
