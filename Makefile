@@ -1,12 +1,12 @@
 PREFIX ?= /usr
+BINDIR ?= $(PREFIX)/bin
 
 all:
 	@echo Run \'make install\' to install cpr.
 
 install:
-	@mkdir -pv $(DESTDIR)$(PREFIX)/bin
-	@cp -p cpr $(DESTDIR)$(PREFIX)/bin/cpr
-	@chmod 755 $(DESTDIR)$(PREFIX)/bin/cpr
+	install -d $(DESTDIR)$(BINDIR)
+	install -m 755 cpr $(DESTDIR)$(BINDIR)
 
 uninstall:
-	@rm -fv $(DESTDIR)$(PREFIX)/bin/cpr
+	rm -f $(DESTDIR)$(BINDIR)/cpr
